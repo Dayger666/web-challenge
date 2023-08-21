@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IResponse } from 'interfaces/api-interfaces';
-import { ITransaction, IRates } from 'interfaces/transactions-interfaces';
+import {
+  ITransaction,
+  IRates,
+  ITransactions,
+} from 'interfaces/transactions-interfaces';
 
 export interface ITransactionsState{
   isLoading: boolean;
@@ -21,14 +25,14 @@ const { actions, reducer } = createSlice({
   name: 'transactions',
   initialState,
   reducers: {
-    fetchTransactionsListRequest(state, action: PayloadAction) {
+    fetchTransactionsListRequest(state) {
       state.isLoading = true;
     },
     fetchTransactionsListSuccess(
       state,
-      { payload: { data } }: PayloadAction<IResponse<ITransaction[]>>,
+      { payload: { data: { transactions } } }: PayloadAction<IResponse<ITransactions>>,
     ) {
-      state.list = data;
+      state.list = transactions;
       state.isLoading = false;
     },
     fetchTransactionsListFailed(state, { payload }: PayloadAction<string>) {

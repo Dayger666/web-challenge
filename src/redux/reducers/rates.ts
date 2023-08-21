@@ -5,13 +5,17 @@ import { IRates } from 'interfaces/transactions-interfaces';
 
 export interface IRatesState{
   isLoading: boolean;
-  eurRates: Partial<IRates>,
+  eurRates: IRates,
   error: Error | string | null,
 }
 
 const initialState: IRatesState = {
   isLoading: false,
-  eurRates: {},
+  eurRates: {
+    BTC: null,
+    CHF: null,
+    USD: null,
+  },
   error: null,
 };
 
@@ -19,7 +23,7 @@ const { actions, reducer } = createSlice({
   name: 'rates',
   initialState,
   reducers: {
-    fetchRatesRequest(state, action: PayloadAction) {
+    fetchRatesRequest(state) {
       state.isLoading = true;
     },
     fetchRatesSuccess(

@@ -12,11 +12,11 @@ import {
 } from 'redux/reducers/transactions';
 import { transactionsAPI } from 'utils/api';
 import { IResponse } from 'interfaces/api-interfaces';
-import { ITransaction } from 'interfaces/transactions-interfaces';
+import { ITransactions } from 'interfaces/transactions-interfaces';
 
 function* fetchTransactions() {
   try {
-    const response: IResponse<ITransaction[]> = yield call(transactionsAPI.getAll);
+    const response: IResponse<ITransactions> = yield call(transactionsAPI.getAll);
     yield put(fetchTransactionsListSuccess(response));
   } catch (error: any) {
     yield put(fetchTransactionsListFailed(error));

@@ -8,12 +8,12 @@ export type IRates = {
   [key in CurrencyCode]: number | null;
 };
 
-enum TransactionType {
+export enum TransactionType {
   Withdrawal = 'withdrawal',
   Deposit = 'deposit',
 }
 
-enum TransactionStatus {
+export enum TransactionStatus {
   Pending = 'pending',
   Completed = 'completed',
 }
@@ -25,4 +25,8 @@ export interface ITransaction {
   status: TransactionStatus;
   currency: CurrencyCode;
   amount: number;
+}
+
+export interface ITransactions {
+  transactions: ITransaction[];
 }
