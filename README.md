@@ -1,46 +1,103 @@
-# Getting Started with Create React App
+# SwissBorg Web Challenge Solution
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the solution for the SwissBorg recruitment assignment for web developers.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+The solution provides two main tables:
 
-### `npm start`
+1. A table that showcases transaction data along with the calculated euro equivalent of each transaction's amount.
+2. A summary table that aggregates deposits & withdrawals data grouped by currency.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Prerequisites
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- A running instance of the mock data HTTP server provided in the challenge description.
+- node.js
+- yarn (or npm)
 
-### `npm test`
+## How to run
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Before running our application, ensure you have the mock data HTTP server up and running.
 
-### `npm run build`
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/Dayger666/web-challenge.git
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navigate to the project directory:
+   ```bash
+   cd [project-directory]
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Install the dependencies:
+   ```bash
+   yarn install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Start the application:
+   ```bash
+   yarn start
+   ```
 
-### `npm run eject`
+The application should now be running on `http://localhost:3000` or another available port, if specified.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technology Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **Language**: TypeScript
+    - **Justification**: TypeScript offers static typing which ensures better code quality, detectable errors during compile time, and enhances code readability. Additionally, with type inference and interfaces, TypeScript allows for more maintainable and scalable code, which is crucial for larger and growing projects.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **UI Library**: React, AntD
+    - **Justification**:
+        - **React**: One of the most widely used libraries for building user interfaces, React provides flexibility, efficiency, and a strong community backing. Its component-based architecture ensures code reusability and easier maintenance.
+        - **AntD**: Ant Design (AntD) is a comprehensive UI design system and React component library. By using AntD, we can ensure consistent design and behavior of components, speeding up development without compromising on user experience.
 
-## Learn More
+- **State Management**: Redux
+    - **Justification**: Redux provides a predictable state container for JavaScript apps. By centralizing application state, it becomes easier to manage and debug. With its strict unidirectional data flow and middleware support, it's easier to implement features like logging, caching, and persisting state. Additionally, when integrated with TypeScript, it becomes even more powerful with type-safe actions and reducers.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Styling**: SCSS
+    - **Justification**: SCSS (Sassy CSS) is a CSS preprocessor that adds power and elegance to the basic language. It allows for variables, nested rules, and mixins, which improves maintainability, produces cleaner code, and can significantly speed up styling. Moreover, SCSS's compatibility with all versions of CSS ensures that stylesheets will work in any browser environment.
+- **Libraries**: Decimal.js
+    - **Justification**: When dealing with financial transaction, precision is of utmost importance. JavaScript's native number handling has several quirks due to its IEEE 754 binary floating-point standard, which can lead to precision errors. These errors, although often tiny, can have significant consequences in financial calculations. Leveraging decimal.js ensures we provide the best user experience and maintain the integrity of our operations.
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Assumptions
+
+1. If the euro rate is not available for a transaction, the 'eur equiv' column will show 'N/A'.
+2. Transactions that are not completed are categorized as pending.
+3. The second table computes total balance by subtracting completed withdrawals from completed deposits for each currency.
+4. Any external data fetching error or server-related error will be handled gracefully.
+
+## Potential Pitfalls & Improvements
+
+### Security
+
+1. **API Security**: Ensure API endpoints have measures like rate limiting, authentication, and data encryption.
+2. **Data Integrity**: Introduce checks to ensure data integrity and prevent tampering.
+
+### Scalability
+
+3. **Performance**: Optimize for large datasets with techniques like database indexing and caching.
+4. **Concurrent Transactions**: Handle concurrent transactions in high-frequency trading environments.
+
+### Usability
+
+5. **Real-time Updates**: Implement real-time updates for dynamic data representation (e.g rates). Or button that will update the data when pressed.
+6. **Advanced Filtering**: Offer filtering options for users to sift through transactions.
+
+### Reliability
+
+7. **Error Handling**: Implement robust error handling and failover mechanisms.
+8. **Data Redundancy**: Ensure continuous operation with backup systems.
+
+### Logging 
+9. **Logging**: For error tracking and monitoring in production, connect firebase analytics, sentry or another analogue.
+
+### User Experience
+
+10. **Mobile Responsiveness**: Optimize for mobile device accessibility.
+
+### Testing
+
+11. **Load Testing**: Ensure the system's capability to handle expected user volume.
